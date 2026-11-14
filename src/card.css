@@ -1,0 +1,183 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+button {
+  text-align: left;
+}
+
+ha-card {
+  --temp-color: var(--secondary-text-color);
+  --hum-color: #4aa3ff;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  background: linear-gradient(
+    170deg,
+    color-mix(in srgb, var(--temp-color) 10%, var(--ha-card-background, var(--card-background-color))) 0%,
+    var(--ha-card-background, var(--card-background-color)) 60%
+  );
+
+  &.stale {
+    opacity: 0.6;
+  }
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.title {
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1.15em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comfort {
+  font-size: 0.84em;
+  font-weight: 500;
+  margin-top: 1px;
+  color: var(--temp-color);
+}
+
+.battery {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.82em;
+  color: var(--secondary-text-color);
+  padding: 4px 8px 4px 6px;
+  border-radius: 999px;
+  background: var(--secondary-background-color, rgba(127, 127, 127, 0.12));
+  min-height: 28px;
+
+  & ha-icon {
+    --mdc-icon-size: 18px;
+  }
+
+  /* same thresholds and colours as Home Assistant's own battery icons */
+  &.good {
+    --bc: var(--state-sensor-battery-high-color, var(--success-color, #43a047));
+  }
+  &.mid {
+    --bc: var(--state-sensor-battery-medium-color, var(--warning-color, #ff9800));
+  }
+  &.low {
+    --bc: var(--state-sensor-battery-low-color, var(--error-color, #db4437));
+  }
+  &.good,
+  &.mid,
+  &.low {
+    color: var(--bc);
+    background: color-mix(in srgb, var(--bc) 16%, transparent);
+  }
+}
+
+.readings {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.temp {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.num {
+  font-size: 3em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit {
+  font-size: 1.1em;
+  margin: 6px 0 0 2px;
+  color: var(--secondary-text-color);
+}
+
+.trend {
+  --mdc-icon-size: 24px;
+  margin: 4px 0 0 8px;
+  color: var(--temp-color);
+}
+
+.hum {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  color: var(--hum-color);
+  padding-bottom: 6px;
+
+  & ha-icon {
+    --mdc-icon-size: 24px;
+    align-self: center;
+  }
+}
+
+.hnum {
+  font-size: 1.9em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--primary-text-color);
+}
+
+.hunit {
+  font-size: 0.95em;
+  color: var(--secondary-text-color);
+}
+
+.graph {
+  width: 100%;
+  height: 60px;
+  cursor: pointer;
+  display: block;
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--divider-color);
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+}
+
+.lbl {
+  font-size: 0.66em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary-text-color);
+  white-space: nowrap;
+}
+
+.v {
+  font-size: 0.86em;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
