@@ -2,7 +2,7 @@
 
 A Home Assistant dashboard card for the **Shelly H&T** (Humidity & Temperature) WiFi sensor. It also works with any temperature sensor, with or without humidity and battery.
 
-<!-- TODO: screenshot (the Marketplace needs one), e.g. ![Shelly H&T Card](docs/screenshot.png) -->
+![Shelly H&T Card](docs/screenshot.png)
 
 - **Temperature** in large text, with a **trend arrow** (rising, falling or steady compared with an hour ago).
 - **Humidity.**
