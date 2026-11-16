@@ -90,7 +90,9 @@ export class ShellyHtCard extends LitElement {
   }
 
   setConfig(config: ShellyHtCardConfig): void {
-    if (!config?.temperature) throw new Error("Set 'temperature' to a temperature sensor");
+    if (!config?.temperature) {
+      throw new Error("Set 'temperature' to a temperature sensor");
+    }
     this._config = { ...config };
     this._resolved = false;
     if (this._hass) {
@@ -106,12 +108,18 @@ export class ShellyHtCard extends LitElement {
   set hass(hass: HomeAssistant) {
     const prev = this._hass;
     this._hass = hass;
-    if (!this._config) return;
+    if (!this._config) {
+      return;
+    }
     this._resolve();
     const temp = this._config.temperature;
     const ids = [temp, this._hum, this._bat];
-    if (!prev || ids.some((id) => id && prev.states[id] !== hass.states[id])) this.requestUpdate();
-    if (!prev || prev.states[temp] !== hass.states[temp]) void this._fetch();
+    if (!prev || ids.some((id) => id && prev.states[id] !== hass.states[id])) {
+      this.requestUpdate();
+    }
+    if (!prev || prev.states[temp] !== hass.states[temp]) {
+      void this._fetch();
+    }
   }
 
   override connectedCallback(): void {
@@ -141,7 +149,9 @@ export class ShellyHtCard extends LitElement {
   private _resolve(): void {
     const h = this._hass;
     const c = this._config;
-    if (this._resolved || !h || !c) return;
+    if (this._resolved || !h || !c) {
+      return;
+    }
     const sensors = siblingSensors(h, c.temperature);
     const deviceClass = (id: string) => h.states[id]?.attributes?.device_class;
     this._hum = c.humidity || sensors.find((id) => deviceClass(id) === "humidity") || null;
@@ -152,7 +162,9 @@ export class ShellyHtCard extends LitElement {
   private async _fetch(): Promise<void> {
     const h = this._hass;
     const c = this._config;
-    if (!h || !c || this._fetching) return;
+    if (!h || !c || this._fetching) {
+      return;
+    }
     this._fetching = true;
     try {
       const ids = [c.temperature, this._hum].filter((id): id is string => !!id);
@@ -168,13 +180,19 @@ export class ShellyHtCard extends LitElement {
 
   private _trend(t: number | null, unit: string): { icon: string; title: string } | null {
     const pts = this._series.t;
-    if (t == null || !pts.length) return null;
+    if (t == null || !pts.length) {
+      return null;
+    }
     const target = Date.now() - 3600 * 1000;
     const old = pts.reduce((best, p) => (Math.abs(p.t - target) < Math.abs(best.t - target) ? p : best));
     const d = t - old.v;
     const step = isCelsius(unit) ? 0.2 : 0.4;
-    if (d > step) return { icon: "mdi:trending-up", title: "Rising" };
-    if (d < -step) return { icon: "mdi:trending-down", title: "Falling" };
+    if (d > step) {
+      return { icon: "mdi:trending-up", title: "Rising" };
+    }
+    if (d < -step) {
+      return { icon: "mdi:trending-down", title: "Falling" };
+    }
     return { icon: "mdi:trending-neutral", title: "Steady" };
   }
 
@@ -194,7 +212,9 @@ export class ShellyHtCard extends LitElement {
   override render(): unknown {
     const h = this._hass;
     const c = this._config;
-    if (!h || !c) return nothing;
+    if (!h || !c) {
+      return nothing;
+    }
     const ts = h.states[c.temperature];
     const t = numericState(h, c.temperature);
     const hu = numericState(h, this._hum);
