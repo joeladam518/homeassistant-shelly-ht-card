@@ -1,5 +1,6 @@
+import { defineOnce, logVersion, registerCard } from "@joeladam518/shared-cards/register.ts";
+
 import { ShellyHtCard } from "./card.ts";
-import { defineOnce, logVersion, registerCard } from "./lib/register.ts";
 
 defineOnce("shelly-ht-card", ShellyHtCard);
 
