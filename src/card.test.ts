@@ -1,9 +1,11 @@
+import { act, flush, stubHaElements } from "@joeladam518/shared-cards/testing.ts";
 import type { HomeAssistant } from "@joeladam518/shared-cards/types.ts";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 
-import type { ShellyHtCard } from "./card.ts";
+import type { ShellyHtCardElement as ShellyHtCard } from "./card.tsx";
 
 beforeAll(async () => {
+  stubHaElements();
   await import("./index.ts");
 });
 
@@ -58,12 +60,14 @@ function fakeHass(temp = "21.5"): HomeAssistant {
 
 async function mount(config: Record<string, unknown> = {}, hass = fakeHass()): Promise<ShellyHtCard> {
   const card = document.createElement("shelly-ht-card") as ShellyHtCard;
-  card.setConfig({ type: "custom:shelly-ht-card", temperature: "sensor.ht_temperature", ...config });
-  card.hass = hass;
-  document.body.append(card);
+  await act(() => {
+    card.setConfig({ type: "custom:shelly-ht-card", temperature: "sensor.ht_temperature", ...config });
+    card.hass = hass;
+    document.body.append(card);
+  });
   // Wait for the 24-hour history (fetched over the fake websocket) to render.
   await vi.waitFor(() => expect(card.shadowRoot?.querySelector(".v")?.textContent).toMatch(/\d/));
-  await card.updateComplete;
+  await flush();
   return card;
 }
 
@@ -114,10 +118,12 @@ describe("shelly-ht-card", () => {
 
   it("dims the card while the sensor is unavailable", async () => {
     const card = document.createElement("shelly-ht-card") as ShellyHtCard;
-    card.setConfig({ type: "custom:shelly-ht-card", temperature: "sensor.ht_temperature" });
-    card.hass = fakeHass("unavailable");
-    document.body.append(card);
-    await card.updateComplete;
+    await act(() => {
+      card.setConfig({ type: "custom:shelly-ht-card", temperature: "sensor.ht_temperature" });
+      card.hass = fakeHass("unavailable");
+      document.body.append(card);
+    });
+    await flush();
     expect(card.shadowRoot!.querySelector("ha-card")!.classList.contains("stale")).toBe(true);
     expect(text(card, ".num")).toBe("–");
   });

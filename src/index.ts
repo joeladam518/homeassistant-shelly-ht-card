@@ -1,8 +1,8 @@
 import { defineOnce, logVersion, registerCard } from "@joeladam518/shared-cards/register.ts";
 
-import { ShellyHtCard } from "./card.ts";
+import { ShellyHtCardElement } from "./card.tsx";
 
-defineOnce("shelly-ht-card", ShellyHtCard);
+defineOnce("shelly-ht-card", ShellyHtCardElement);
 
 registerCard({
   type: "shelly-ht-card",
