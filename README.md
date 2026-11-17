@@ -17,6 +17,13 @@ A Home Assistant dashboard card for the **Shelly H&T** (Humidity & Temperature) 
 
 ### Home Assistant Marketplace
 
+1. Open **Marketplace** and search for **Shelly H&T Card**.
+2. Install it, then reload the browser.
+
+#### Custom repository
+
+If the card doesn't show up in the search, add it as a custom repository:
+
 1. Open **Marketplace** and choose **⋮ → Custom repositories**.
 2. Add `https://github.com/joeladam518/homeassistant-shelly-ht-card` with the type **Dashboard**.
 3. Find **Shelly H&T Card** and install it, then reload the browser.
@@ -25,7 +32,7 @@ A Home Assistant dashboard card for the **Shelly H&T** (Humidity & Temperature) 
 
 1. Download `shelly-ht-card.js` from the [latest release](https://github.com/joeladam518/homeassistant-shelly-ht-card/releases/latest) into `/config/www/`.
 2. Go to **Settings → Dashboards → ⋮ → Resources → Add resource**:
-   - URL: `/local/shelly-ht-card.js?v=2.1.0`
+   - URL: `/local/shelly-ht-card.js?v=2.1.1`
    - Type: **JavaScript module**
 3. Hard-refresh the browser. In the phone app, use **Settings → Companion app → Debugging → Reset frontend cache**.
 
