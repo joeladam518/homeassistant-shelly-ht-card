@@ -34,7 +34,7 @@ If the card doesn't show up in the search, add it as a custom repository:
 
 1. Download `shelly-ht-card.js` from the [latest release](https://github.com/joeladam518/homeassistant-shelly-ht-card/releases/latest) into `/config/www/`.
 2. Go to **Settings → Dashboards → ⋮ → Resources → Add resource**:
-   - URL: `/local/shelly-ht-card.js?v=2.1.3`
+   - URL: `/local/shelly-ht-card.js?v=2.1.4`
    - Type: **JavaScript module**
 3. Hard-refresh the browser. In the phone app, use **Settings → Companion app → Debugging → Reset frontend cache**.
 
