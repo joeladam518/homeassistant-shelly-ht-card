@@ -1,6 +1,6 @@
 {
   "name": "homeassistant-shelly-ht-card",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "description": "Home Assistant dashboard card for the Shelly H&T (humidity & temperature) WiFi sensor: big temperature with trend, humidity, comfort, a 24-hour graph, low/high and battery.",
   "keywords": [
