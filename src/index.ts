@@ -1,4 +1,4 @@
-import { defineOnce, logVersion, registerCard } from "@joeladam518/shared-cards/register.ts";
+import { defineOnce, logVersion, registerCard } from "homeassistant-ui-shared";
 
 import { ShellyHtCardElement } from "./card.tsx";
 

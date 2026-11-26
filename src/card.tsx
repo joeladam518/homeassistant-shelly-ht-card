@@ -1,18 +1,31 @@
-import { type CardProps, createCardElement } from "@joeladam518/shared-cards/card-element.tsx";
-import { entityAreaName, numericState, siblingSensors } from "@joeladam518/shared-cards/devices.ts";
-import { batteryIcon, relTime } from "@joeladam518/shared-cards/format.ts";
-import { useInterval, useNow } from "@joeladam518/shared-cards/hooks.ts";
-import { fireMoreInfo } from "@joeladam518/shared-cards/more-info.ts";
-import { areaPath, linePath, type Point, timeScale } from "@joeladam518/shared-cards/sparkline.ts";
-import { fetchStats, rowTime, type StatRow } from "@joeladam518/shared-cards/statistics.ts";
-import type { HomeAssistant, LovelaceCardConfig } from "@joeladam518/shared-cards/types.ts";
+import {
+  areaPath,
+  baseCss,
+  batteryIcon,
+  type CardProps,
+  createCardElement,
+  entityAreaName,
+  fetchStats,
+  fireMoreInfo,
+  type HomeAssistant,
+  linePath,
+  type LovelaceCardConfig,
+  numericState,
+  type Point,
+  relTime,
+  rowTime,
+  siblingSensors,
+  type StatRow,
+  timeScale,
+  useInterval,
+  useNow,
+} from "homeassistant-ui-shared";
 import type { FunctionComponent as FC } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import { comfort, isCelsius, toFahrenheit } from "./comfort.ts";
 
 import cardCss from "./card.css?inline";
-import baseCss from "@joeladam518/shared-cards/base.css?inline";
 
 export interface ShellyHtCardConfig extends LovelaceCardConfig {
   name?: string;
