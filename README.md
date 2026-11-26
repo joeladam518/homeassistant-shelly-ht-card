@@ -17,6 +17,8 @@ A Home Assistant dashboard card for the **Shelly H&T** (Humidity & Temperature) 
 
 ### Home Assistant Marketplace
 
+[![Open this repository in the Marketplace on your Home Assistant.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=joeladam518&repository=homeassistant-shelly-ht-card&category=plugin)
+
 1. Open **Marketplace** and search for **Shelly H&T Card**.
 2. Install it, then reload the browser.
 
